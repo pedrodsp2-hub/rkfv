@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Contato</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Fale conosco</h1>
+    <p class="subtitulo">Campos com * são obrigatórios.</p>
+
+    <form action="#" method="post">
+      <div class="campo">
+        <label for="nome">Nome *</label>
+        <input type="text" id="nome" name="nome"
+               placeholder="Maria Silva"
+               required minlength="3" autocomplete="name">
+        <small class="erro">Informe ao menos 3 caracteres.</small>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email"
+               placeholder="maria@exemplo.com"
+               required autocomplete="email">
+        <small class="erro">Digite um e-mail válido.</small>
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone *</label>
+        <input type="tel" id="telefone" name="telefone"
+               placeholder="(11) 99999-9999"
+               pattern="\(\d{2}\) \d{4,5}-\d{4}"
+               required autocomplete="tel">
+        <small class="erro">Use o formato (11) 99999-9999.</small>
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha *</label>
+        <input type="password" id="senha" name="senha"
+               placeholder="Mínimo 8 caracteres"
+               required minlength="8" autocomplete="new-password">
+        <small class="erro">A senha deve ter 8 ou mais caracteres.</small>
+      </div>
+
+      <div class="campo">
+        <label for="confirmar-senha">Confirmar senha *</label>
+        <input type="password" id="confirmar-senha"
+               name="confirmar-senha"
+               placeholder="Digite a senha novamente"
+               required minlength="8" autocomplete="new-password">
+        <small class="erro">As senhas devem ser iguais.</small>
+      </div>
+
+      <div class="campo">
+        <label for="idade">Idade</label>
+        <input type="number" id="idade" name="idade"
+               min="18" max="99" placeholder="18 a 99">
+        <small class="erro">Informe um valor entre 18 e 99.</small>
+      </div>
+
+      <div class="campo">
+        <label for="assunto">Assunto *</label>
+        <select id="assunto" name="assunto" required>
+          <option value="" disabled selected>Selecione...</option>
+          <option value="duvida">Dúvida</option>
+          <option value="sugestao">Sugestão</option>
+          <option value="suporte">Suporte</option>
+        </select>
+        <small class="erro">Escolha um assunto.</small>
+      </div>
+
+      <div class="campo">
+        <label for="mensagem">Mensagem *</label>
+        <textarea id="mensagem" name="mensagem" rows="4"
+                  placeholder="Escreva sua mensagem..."
+                  required minlength="10" maxlength="300"></textarea>
+        <small class="erro">Escreva ao menos 10 caracteres.</small>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+
+  <script>
+    const senha = document.getElementById("senha");
+    const confirmarSenha = document.getElementById("confirmar-senha");
+
+    function validarSenha() {
+      if (confirmarSenha.value === "") {
+        confirmarSenha.setCustomValidity("");
+      } else if (senha.value !== confirmarSenha.value) {
+        confirmarSenha.setCustomValidity("As senhas devem ser iguais.");
+      } else {
+        confirmarSenha.setCustomValidity("");
+      }
+    }
+
+    senha.addEventListener("input", validarSenha);
+    confirmarSenha.addEventListener("input", validarSenha);
+  </script>
+</body>
+</html>
